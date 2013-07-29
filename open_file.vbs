@@ -22,3 +22,17 @@ Public Function GetLong(gText As String) As Long
         GetLong = GetLong - 1
     Loop
 End Function
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Dim file3 As String
+    file3 = ThisWorkbook.Worksheets("settings").Range("c6").Value
+    
+    Dim file3_obj As Workbook
+    Dim file3_name As String
+    file3_name = Right(file3, Len(file3) - GetLong(file3))
+    If (IsWorkBookOpen(file3_name) = False) Then
+        Set file3_obj = Workbooks.Open(Filename:=file3)
+    Else
+        Set file3_obj = Workbooks(file3_name)
+    End If
