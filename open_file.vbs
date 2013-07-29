@@ -1,4 +1,4 @@
-'additional functions
+'additional VBA functions
 Public Function IsWorkBookOpen(WkbName As String) As Boolean
     Dim wBook As Workbook
 
@@ -24,6 +24,8 @@ Public Function GetLong(gText As String) As Long
 End Function
 
 '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'piece of code showing how to use these functions
+
 
     Dim file3 As String
     file3 = ThisWorkbook.Worksheets("settings").Range("c6").Value
