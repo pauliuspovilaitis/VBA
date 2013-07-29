@@ -1,4 +1,4 @@
-Sub export_as_image(export_dir As String, sh As String)
+Sub export_as_image(export_dir As String, sh As String, rg as string)
 
 ThisWorkbook.Worksheets(sh).Activate
 
@@ -6,7 +6,7 @@ With ThisWorkbook.Worksheets(sh)
     
     On Error Resume Next
     
-    Dim rgExp As Range: Set rgExp = Range("a1:q37")
+    Dim rgExp As Range: Set rgExp = Range(rg)
     rgExp.CopyPicture Appearance:=xlScreen, Format:=xlBitmap
     
 
