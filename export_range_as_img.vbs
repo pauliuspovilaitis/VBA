@@ -1,4 +1,4 @@
-Sub export_as_image(export_dir As String, sh As String, rg as string)
+Sub export_as_image(export_dir As String, sh As String, rg as String)
 
 ThisWorkbook.Worksheets(sh).Activate
 
