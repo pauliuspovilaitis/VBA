@@ -2,10 +2,10 @@
 'SERVERNAME=XXX.XX.XX.XX
 Public Sub Main()
 
-   On Error Resume Next
+On Error Resume Next
    
-    Dim objExcel
-  Dim objWorkbook
+  	Dim objExcel
+  	Dim objWorkbook
 	Dim Export_Date
 	Dim Export_File
 	dim Export_Skills
@@ -38,24 +38,13 @@ Public Sub Main()
 	      Rep.Window.Width = 15405
 	      Rep.Window.Height = 9075        
 	
-
-	
 	      Rep.SetProperty "Splits/Skills", Export_Skills
 	      Rep.SetProperty "Dates", Export_Date
 	      Rep.SetProperty "Times","00:00-23:30"
 	
-	
-	
-
-	        b = Rep.ExportData(Export_File, 59, 0, True, True, True)
-
-	
-
-	
+	      b = Rep.ExportData(Export_File, 59, 0, True, True, True)
 
 	      Rep.Quit
-
-	
 
               If Not cvsSrv.Interactive Then cvsSrv.ActiveTasks.Remove Rep.TaskID
 	      Set Rep = Nothing
