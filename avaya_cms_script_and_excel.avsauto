@@ -1,0 +1,68 @@
+'LANGUAGE=ENU
+'SERVERNAME=XXX.XX.XX.XX
+Public Sub Main()
+
+   On Error Resume Next
+   
+    Dim objExcel
+  Dim objWorkbook
+	Dim Export_Date
+	Dim Export_File
+	dim Export_Skills
+   
+   	Set objExcel = GetObject(, "Excel.Application")
+	Set objWorkbook = objExcel.Workbooks("Bravofly_agents_track_macro!.xls")
+	
+	Export_Date = objWorkbook.Worksheets("settings").Range("c2").Value
+	Export_File = objWorkbook.Worksheets("settings").Range("c4").Value
+	Export_Skills = objWorkbook.Worksheets("settings").Range("c3").Value
+
+   cvsSrv.Reports.ACD = 1
+   Set Info = cvsSrv.Reports.Reports("Historical\Designer\bfly_abandons")
+
+   If Info Is Nothing Then
+	  If cvsSrv.Interactive Then
+		  MsgBox "The report Historical\Designer\bfly_abandons was not found on ACD 1.", vbCritical Or vbOKOnly, "Avaya CMS Supervisor"
+	  Else
+	   	  Set Log = CreateObject("AVSERR.cvsLog") 
+		  Log.AutoLogWrite "The report Historical\Designer\bfly_abandons was not found on ACD 1."
+		  Set Log = Nothing
+	  End If
+   Else
+
+	   b = cvsSrv.Reports.CreateReport(Info,Rep)
+	   If b Then
+	
+	      Rep.Window.Top = 5145
+	      Rep.Window.Left = 10290
+	      Rep.Window.Width = 15405
+	      Rep.Window.Height = 9075        
+	
+
+	
+	      Rep.SetProperty "Splits/Skills", Export_Skills
+	      Rep.SetProperty "Dates", Export_Date
+	      Rep.SetProperty "Times","00:00-23:30"
+	
+	
+	
+
+	        b = Rep.ExportData(Export_File, 59, 0, True, True, True)
+
+	
+
+	
+
+	      Rep.Quit
+
+	
+
+              If Not cvsSrv.Interactive Then cvsSrv.ActiveTasks.Remove Rep.TaskID
+	      Set Rep = Nothing
+	   End If
+
+   End If
+   Set Info = Nothing
+'## cvs_cmd_end
+
+End Sub
