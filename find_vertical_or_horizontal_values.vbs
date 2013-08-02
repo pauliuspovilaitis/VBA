@@ -1,3 +1,5 @@
+Public arFailai(1 To FILE_ARRAY_SIZE) As book_name_storage
+
 Function ReturnBook(name As String) As Workbook
    Dim iSearch As Integer
    iSearch = 1
