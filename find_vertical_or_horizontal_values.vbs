@@ -1,3 +1,15 @@
+Function ReturnBook(name As String) As Workbook
+   Dim iSearch As Integer
+   iSearch = 1
+   Do While (arFailai(iSearch).name <> name) And (iSearch < FILE_ARRAY_SIZE - 1)
+         iSearch = iSearch + 1
+   Loop
+   If (arFailai(iSearch).name = name) Then
+        Set ReturnBook = arFailai(iSearch).book
+   Else
+        Set ReturnBook = Nothing
+   End If
+
 Function FindVerticalValue(book1 As String, Sheet1 As String, col As String, key As String) As Long
     Dim wBook1 As Workbook
     Set wBook1 = ReturnBook(book1)
