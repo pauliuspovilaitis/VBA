@@ -10,6 +10,27 @@ Function ReturnBook(name As String) As Workbook
         Set ReturnBook = Nothing
    End If
 
+Public Function ColumnLetter(ColumnNumber As Integer) As String
+  If ColumnNumber > 26 Then
+
+    ' 1st character:  Subtract 1 to map the characters to 0-25,
+    '                 but you don't have to remap back to 1-26
+    '                 after the 'Int' operation since columns
+    '                 1-26 have no prefix letter
+
+    ' 2nd character:  Subtract 1 to map the characters to 0-25,
+    '                 but then must remap back to 1-26 after
+    '                 the 'Mod' operation by adding 1 back in
+    '                 (included in the '65')
+
+    ColumnLetter = Chr(Int((ColumnNumber - 1) / 26) + 64) & _
+                   Chr(((ColumnNumber - 1) Mod 26) + 65)
+  Else
+    ' Columns A-Z
+    ColumnLetter = Chr(ColumnNumber + 64)
+  End If
+End Function
+
 Function FindVerticalValue(book1 As String, Sheet1 As String, col As String, key As String) As Long
     Dim wBook1 As Workbook
     Set wBook1 = ReturnBook(book1)
