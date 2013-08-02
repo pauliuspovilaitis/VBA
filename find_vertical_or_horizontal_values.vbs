@@ -1,4 +1,14 @@
+Option Explicit
+
+ Type book_name_storage
+    name As String
+    book As Workbook
+ End Type
+ 
+Public Const FILE_ARRAY_SIZE As Integer = 50
 Public arFailai(1 To FILE_ARRAY_SIZE) As book_name_storage
+ 
+
 
 Function ReturnBook(name As String) As Workbook
    Dim iSearch As Integer
